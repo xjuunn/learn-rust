@@ -1,10 +1,10 @@
 mod exercises;
 
 fn main() {
-    println!("=== 克隆：元素翻倍 ===");
-    let original = vec![1, 2, 3];
-    let doubled = exercises::current::exercise_fn(original.clone());
+    println!("=== 借用：去除空白 ===");
+    let original = "  hello  ";
+    let trimmed = exercises::current::exercise_fn(original);
     println!("原始: {:?}", original);
-    println!("翻倍: {:?}", doubled);
-    // original 仍可被使用，因为传的是克隆
+    println!("去空白: {:?}", trimmed);
+    // original 仍可用，因为只是借用
 }
