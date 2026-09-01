@@ -1,10 +1,8 @@
 mod exercises;
 
 fn main() {
-    println!("=== 混合类型运算 ===");
-    let a = 3;
-    let b = 2.5;
-    let c = 2;
-    let result = exercises::current::exercise_fn(a, b, c);
-    println!("{} + {} + {} = {}", a, b, c, result);
+    println!("=== 函数调用与数组求和 ===");
+    let data = [1, 2, 3, 4, 5];
+    let result = exercises::current::exercise_fn(&data);
+    println!("对数组 {:?} 求和的结果: {}", data, result);
 }
