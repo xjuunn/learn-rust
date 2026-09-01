@@ -1,9 +1,10 @@
 mod exercises;
 
 fn main() {
-    println!("=== 移动语义：Vec 求和 ===");
-    let v = vec![1, 2, 3];
-    let sum = exercises::current::exercise_fn(v);
-    println!("Vec 元素之和: {}", sum);
-    // 注意：v 的所有权已移动到函数内，这里不能再使用 v
+    println!("=== 克隆：元素翻倍 ===");
+    let original = vec![1, 2, 3];
+    let doubled = exercises::current::exercise_fn(original.clone());
+    println!("原始: {:?}", original);
+    println!("翻倍: {:?}", doubled);
+    // original 仍可被使用，因为传的是克隆
 }
