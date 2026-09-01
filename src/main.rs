@@ -1,8 +1,10 @@
 mod exercises;
 
 fn main() {
-    println!("=== 遮蔽演示 ===");
-    println!("字符串 \"hello\" 经过遮蔽和类型转换：");
-    let result = exercises::current::exercise_fn();
-    println!("最终结果: {}", result);
+    println!("=== 混合类型运算 ===");
+    let a = 3;
+    let b = 2.5;
+    let c = 2;
+    let result = exercises::current::exercise_fn(a, b, c);
+    println!("{} + {} + {} = {}", a, b, c, result);
 }
