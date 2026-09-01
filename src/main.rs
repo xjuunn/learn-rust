@@ -1,9 +1,9 @@
 mod exercises;
 
 fn main() {
-    println!("=== 闰年判断 ===");
-    for year in [2000, 1900, 2024, 2023] {
-        let result = exercises::current::exercise_fn(year);
-        println!("{}年: {}", year, if result { "是闰年" } else { "不是闰年" });
+    println!("=== 词语评分器 ===");
+    for word in ["abc", "CAT", "a b", "rust"] {
+        let score = exercises::current::exercise_fn(word);
+        println!("\"{}\" 的评分为 {}", word, score);
     }
 }
