@@ -1,10 +1,9 @@
 mod exercises;
 
 fn main() {
-    println!("=== 借用：去除空白 ===");
-    let original = "  hello  ";
-    let trimmed = exercises::current::exercise_fn(original);
-    println!("原始: {:?}", original);
-    println!("去空白: {:?}", trimmed);
-    // original 仍可用，因为只是借用
+    println!("=== 生命周期：较长字符串 ===");
+    let a = String::from("hello");
+    let b = String::from("rust");
+    let longer = exercises::current::exercise_fn(&a, &b);
+    println!("{:?} 和 {:?} 中较长的是 {:?}", a, b, longer);
 }
