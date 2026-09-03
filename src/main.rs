@@ -1,8 +1,7 @@
 mod exercises;
 
 fn main() {
-    println!("=== 平方和 ===");
-    let data = [1, 2, 3];
-    let result = exercises::current::exercise_fn(&data);
-    println!("{:?} 各元素平方和: {}", data, result);
+    println!("=== 矩形计算 ===");
+    let (area, perimeter) = exercises::current::exercise_fn(3, 4);
+    println!("宽3 高4 的矩形 -> 面积: {}, 周长: {}", area, perimeter);
 }
