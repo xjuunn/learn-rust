@@ -1,9 +1,10 @@
 mod exercises;
 
 fn main() {
-    println!("=== 生命周期：较长字符串 ===");
-    let a = String::from("hello");
-    let b = String::from("rust");
-    let longer = exercises::current::exercise_fn(&a, &b);
-    println!("{:?} 和 {:?} 中较长的是 {:?}", a, b, longer);
+    println!("=== 所有权：修复借用冲突 ===");
+    let mut v = vec![2, 3, 4];
+    let result = exercises::current::exercise_fn(&mut v);
+    println!("处理前过程: 首元素翻倍并追加");
+    println!("结果副本: {:?}", result);
+    println!("原向量: {:?}", v);
 }
