@@ -1,8 +1,9 @@
 mod exercises;
 
 fn main() {
-    println!("=== 填空：翻倍并返回原长度 ===");
-    let mut v = vec![1, 2, 3];
-    let len = exercises::current::exercise_fn(&mut v);
-    println!("元素个数: {}, 翻倍后: {:?}", len, v);
+    println!("=== 去除元音字母 ===");
+    for word in ["hello".to_string(), "Rust语言".to_string(), "AEIOU".to_string()] {
+        let result = exercises::current::exercise_fn(word);
+        println!("去除元音后: {:?}", result);
+    }
 }

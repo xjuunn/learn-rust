@@ -3,5 +3,5 @@
 //   1. 用 `pub mod <题目文件名>` 声明当前题目模块
 //   2. 用 `pub use <题目名> as current;` 转发为固定名 current
 
-pub mod double_and_len;
-pub use double_and_len as current;
+pub mod remove_vowels;
+pub use remove_vowels as current;
