@@ -3,6 +3,7 @@ name = "learn-rust"
 version = "0.1.0"
 edition = "2024"
 description = "AI-driven Rust learning project"
+default-run = "learn-rust"
 
 [dependencies]
 
