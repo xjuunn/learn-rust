@@ -102,13 +102,13 @@ tests/cat_tests.rs
 
 ### 归档文件
 
-格式：`{三位序号}_{知识点英文简称}.rs`
+每个题目归档到一个**独立的子文件夹**，文件夹以 `{三位序号}_{知识点英文简称}` 命名；文件夹内保留**无序号的原始文件名**（题目文件与测试文件成对同放）。
 
 ```
-archive/2026-08/001_bind_mut.rs
-archive/2026-08/001_bind_mut_tests.rs
-archive/2026-09/005_move_semantics.rs
-archive/2026-09/005_move_semantics_tests.rs
+archive/2026-08/001_bind_mut/bind_mut.rs
+archive/2026-08/001_bind_mut/bind_mut_tests.rs
+archive/2026-09/005_move/move.rs
+archive/2026-09/005_move/move_tests.rs
 ```
 
 ### 记忆文件
@@ -645,33 +645,40 @@ fn exercise_fn() -> i32 {
 归档时，题目文件和测试文件**必须成对归档**，二者都要移入归档目录，不得遗漏。
 
 1. **实时获取当前日期**（用 `date +%Y-%m-%d`，不要凭记忆）：确定归档目录 `archive/YYYY-MM/`，并用该真实日期更新 `memory/进度.md` 的"最后更新"列
-2. 将题目文件从 `src/exercises/` 移动到归档目录
-3. 将对应的测试文件从 `tests/` 移动到归档目录（测试文件必须与题目文件一同归档）
-4. 更新 `memory/进度.md` 中的状态为 "已归档"
-5. 更新 `memory/课程.md` 中的完成状态
-6. 更新 `memory/统计.md` 中的数据
-7. 使用 git 提交归档（提交信息见下方规范）
-8. **立即生成下一道题目**（归档完成后必须自动出题，不等待用户请求）
+2. 在归档目录 `archive/YYYY-MM/` 下为当前题目创建独立子文件夹 `{三位序号}_{知识点英文简称}/`（如 `archive/2026-09/021_rectangle/`）
+3. 将题目文件从 `src/exercises/` 移动到该子文件夹内（保留无序号的原始文件名）
+4. 将对应的测试文件从 `tests/` 移动到该子文件夹内（测试文件必须与题目文件同放一个文件夹、一同归档）
+5. 更新 `memory/进度.md` 中的状态为 "已归档"
+6. 更新 `memory/课程.md` 中的完成状态
+7. 更新 `memory/统计.md` 中的数据
+8. 使用 git 提交归档（提交信息见下方规范）
+9. **立即生成下一道题目**（归档完成后必须自动出题，不等待用户请求）
 
 ### 归档目录结构
+
+每个题目一个独立子文件夹，文件夹名带序号和题目英文名；文件夹内保留无序号的原始文件名：
 
 ```
 archive/
 ├── 2026-08/
-│   ├── 001_bind_mut.rs
-│   ├── 001_bind_mut_tests.rs
-│   ├── 002_shadowing.rs
-│   └── 002_shadowing_tests.rs
+│   ├── 001_bind_mut/
+│   │   ├── bind_mut.rs
+│   │   └── bind_mut_tests.rs
+│   └── 002_shadowing/
+│       ├── shadowing.rs
+│       └── shadowing_tests.rs
 ├── 2026-09/
-│   └── 005_move.rs
-│   └── 005_move_tests.rs
+│   └── 005_move/
+│       ├── move.rs
+│       └── move_tests.rs
 └── ...
 ```
 
 ### 归档命名
 
-- 题目文件：`{三位序号}_{知识点英文简称}.rs`
-- 测试文件：`{三位序号}_{知识点英文简称}_tests.rs`
+- 子文件夹：`{三位序号}_{知识点英文简称}`（如 `021_rectangle`）
+- 文件夹内题目文件：保留无序号的原始文件名（如 `rectangle.rs`）
+- 文件夹内测试文件：保留无序号的原始测试文件名（如 `rectangle_tests.rs`）
 - 序号在整个项目中全局唯一，不重复
 
 ### git 提交信息规范
