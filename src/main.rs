@@ -1,7 +1,8 @@
 mod exercises;
 
 fn main() {
-    println!("=== 书店库存 ===");
-    let (price, low) = exercises::current::exercise_fn();
-    println!("《Rust编程》8折价: {} , 是否低库存: {}", price, low);
+    println!("=== 学生档案 ===");
+    let s = exercises::current::Student::new("Alice", 95);
+    println!("{:?}", s);
+    println!("{}", s.describe());
 }
