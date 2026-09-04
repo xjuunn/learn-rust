@@ -1,7 +1,7 @@
 mod exercises;
 
 fn main() {
-    println!("=== 矩形计算 ===");
-    let (area, perimeter) = exercises::current::exercise_fn(3, 4);
-    println!("宽3 高4 的矩形 -> 面积: {}, 周长: {}", area, perimeter);
+    println!("=== 两点距离 ===");
+    let d = exercises::current::exercise_fn(0.0, 0.0, 3.0, 4.0);
+    println!("(0,0) 到 (3,4) 的直线距离: {}", d);
 }
