@@ -1,22 +1,57 @@
 # Learn Rust
 
-AI-driven Rust learning project.
+AI 驱动的 Rust 动态学习系统。AI 根据学习进度自动规划课程、生成练习题目与测试用例，验证用户代码、记录学习数据，并在完成后自动归档与生成下一题。
 
-## Usage
+## 工作流程
 
-Write your code in `src/exercises/`, then run:
+```
+出题 -> 编写代码 -> cargo test 验证 -> 审查 -> 归档 -> git 提交 -> 自动出下一题
+```
+
+用户无需配置学习计划，只需在指定目录编写代码并运行测试，AI 负责出题、验证、归档与进度跟进。
+
+## 快速开始
+
+1. 在 `src/exercises/` 中查看并编写当前题目的代码
+2. 运行测试验证逻辑：
 
 ```bash
 cargo test
 ```
 
-## Project Structure
+3. 查看演示效果：
 
-- `src/exercises/` - Exercise files (user writes code here)
-- `tests/` - Test files (AI generates tests)
-- `archive/` - Completed exercises (archived by month)
-- `memory/` - Learning progress and statistics
+```bash
+cargo run
+```
 
-## Rules
+4. 完成后告知 AI，由 AI 验证、审查并归档。
 
-See `AGENTS.md` for AI behavior rules and project conventions.
+## 目录结构
+
+```
+learn-rust/
+├── Cargo.toml                   # 项目配置
+├── src/
+│   ├── main.rs                  # 常驻演示入口（调用当前题目）
+│   ├── lib.rs                   # 模块声明
+│   └── exercises/               # 练习目录（用户在此编写代码）
+│       └── mod.rs               # 将当前题目转发为 exercises::current
+├── tests/                       # 测试目录（AI 为当前题目生成测试）
+├── archive/                     # 归档目录（已完成题目）
+│   └── YYYY-MM/YYYY-MM-DD/      # 三层归档：年月 / 日期 / 题目文件夹
+└── memory/                      # 记忆目录（学习进度、统计、课程）
+```
+
+归档采用三层目录结构：先按年月、再按具体日期，每个题目归档到独立的 `{序号}_{英文名}` 子文件夹内（题目文件与测试文件成对存放）。
+
+## 学习体系
+
+- 三级学习层次：基础板块（变量/所有权/结构体/枚举等）、进阶板块（迭代器/智能指针/并发等）、高级板块（高级 Trait/unsafe/过程宏等）
+- 每个知识点设置指定数量的练习题，AI 根据答题表现动态调整难度与进度
+- 练习形式多样：补全函数、修复 bug、填空、从零定义函数/类型、新建文件等
+
+## 规则说明
+
+- `AGENTS.md` 为 AI 行为准则，定义了出题、测试、审查、归档、记忆更新等完整规则
+- 所有交互与注释使用中文，代码标识符使用英文
