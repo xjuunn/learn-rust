@@ -54,7 +54,7 @@ learn-rust/
 
 1. `src/exercises/` 中同一时间只保留一个当前题目主文件；若题目要求用户新建辅助文件（如新模块、新类型文件，且需在 `lib.rs`/`main.rs` 或题目模块中接入），可临时存在，随下一题出题或归档时一并清理
 2. `tests/` 中同时只保留当前题目的测试文件
-3. `archive/YYYY-MM/` 按年月组织，格式为四位年份-两位月份
+3. `archive/YYYY-MM/YYYY-MM-DD/` 三层归档：先按年月，再按具体日期（皆用四位年份，日期格式 `YYYY-MM-DD`），每个题目归档到日期层下的独立子文件夹
 4. `memory/` 中的文件使用中文命名
 5. 根目录保持整洁，不存放临时文件
 6. `src/main.rs` 路径始终固定不变，是用户查看演示效果的常驻入口，仅在出题/归档时更新其内部代码，绝不改动其路径；main.rs 开头必须有 `mod exercises;` 声明，这是固定写法，永不改变
@@ -102,13 +102,17 @@ tests/cat_tests.rs
 
 ### 归档文件
 
-每个题目归档到一个**独立的子文件夹**，文件夹以 `{三位序号}_{知识点英文简称}` 命名；文件夹内保留**无序号的原始文件名**（题目文件与测试文件成对同放）。
+每个题目归档到**三层目录结构**：`archive/YYYY-MM/YYYY-MM-DD/{序号}_{知识点英文简称}/`。
+
+- 第一层 `archive/YYYY-MM/`：按年月归档（格式：四位年份-两位月份）
+- 第二层 `archive/YYYY-MM/YYYY-MM-DD/`：按具体日期归档（格式：四位年份-两位月份-两位日期）
+- 第三层 `{序号}_{知识点英文简称}/`：该题目独立子文件夹，内放**无序号的原始文件名**（题目文件与测试文件成对同放）
 
 ```
-archive/2026-08/001_bind_mut/bind_mut.rs
-archive/2026-08/001_bind_mut/bind_mut_tests.rs
-archive/2026-09/005_move/move.rs
-archive/2026-09/005_move/move_tests.rs
+archive/2026-08/2026-08-25/001_bind_mut/bind_mut.rs
+archive/2026-08/2026-08-25/001_bind_mut/bind_mut_tests.rs
+archive/2026-09/2026-09-04/005_move/move.rs
+archive/2026-09/2026-09-04/005_move/move_tests.rs
 ```
 
 ### 记忆文件
@@ -644,8 +648,8 @@ fn exercise_fn() -> i32 {
 
 归档时，题目文件和测试文件**必须成对归档**，二者都要移入归档目录，不得遗漏。
 
-1. **实时获取当前日期**（用 `date +%Y-%m-%d`，不要凭记忆）：确定归档目录 `archive/YYYY-MM/`，并用该真实日期更新 `memory/进度.md` 的"最后更新"列
-2. 在归档目录 `archive/YYYY-MM/` 下为当前题目创建独立子文件夹 `{三位序号}_{知识点英文简称}/`（如 `archive/2026-09/021_rectangle/`）
+1. **实时获取当前日期**（用 `date +%Y-%m-%d`，不要凭记忆）：确定归档目录 `archive/YYYY-MM/YYYY-MM-DD/`，并用该真实日期更新 `memory/进度.md` 的"最后更新"列
+2. 在归档目录 `archive/YYYY-MM/YYYY-MM-DD/` 下为当前题目创建独立子文件夹 `{三位序号}_{知识点英文简称}/`（如 `archive/2026-09/2026-09-04/021_rectangle/`）
 3. 将题目文件从 `src/exercises/` 移动到该子文件夹内（保留无序号的原始文件名）
 4. 将对应的测试文件从 `tests/` 移动到该子文件夹内（测试文件必须与题目文件同放一个文件夹、一同归档）
 5. 更新 `memory/进度.md` 中的状态为 "已归档"
@@ -656,27 +660,31 @@ fn exercise_fn() -> i32 {
 
 ### 归档目录结构
 
-每个题目一个独立子文件夹，文件夹名带序号和题目英文名；文件夹内保留无序号的原始文件名：
+**三层目录结构**：先按年月（`YYYY-MM`），再按具体日期（`YYYY-MM-DD`），每个题目归档到日期层下的独立子文件夹（`{序号}_{英文名}`），文件夹内保留无序号的原始文件名：
 
 ```
 archive/
 ├── 2026-08/
-│   ├── 001_bind_mut/
-│   │   ├── bind_mut.rs
-│   │   └── bind_mut_tests.rs
-│   └── 002_shadowing/
-│       ├── shadowing.rs
-│       └── shadowing_tests.rs
+│   └── 2026-08-25/
+│       ├── 001_bind_mut/
+│       │   ├── bind_mut.rs
+│       │   └── bind_mut_tests.rs
+│       └── 002_shadowing/
+│           ├── shadowing.rs
+│           └── shadowing_tests.rs
 ├── 2026-09/
-│   └── 005_move/
-│       ├── move.rs
-│       └── move_tests.rs
+│   └── 2026-09-04/
+│       └── 005_move/
+│           ├── move.rs
+│           └── move_tests.rs
 └── ...
 ```
 
 ### 归档命名
 
-- 子文件夹：`{三位序号}_{知识点英文简称}`（如 `021_rectangle`）
+- 第一层 `archive/YYYY-MM/`：按年月归档（四位年份-两位月份）
+- 第二层 `archive/YYYY-MM/YYYY-MM-DD/`：按具体日期归档（四位年份-两位月份-两位日期，如 `2026-09-04`）
+- 第三层 `{三位序号}_{知识点英文简称}/`：该题目独立子文件夹（如 `021_rectangle`）
 - 文件夹内题目文件：保留无序号的原始文件名（如 `rectangle.rs`）
 - 文件夹内测试文件：保留无序号的原始测试文件名（如 `rectangle_tests.rs`）
 - 序号在整个项目中全局唯一，不重复
