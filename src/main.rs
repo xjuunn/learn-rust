@@ -1,10 +1,9 @@
 mod exercises;
 
 fn main() {
-    println!("=== 铭牌收藏册 ===");
-    let (desc, year) = exercises::current::exercise_fn();
-    println!("① {}（{} 年）", desc, year);
-    let extra = exercises::current::Label::new("山间小径", 1955);
-    println!("② {}", extra.describe());
-    println!("（登记卡借用字符串而非复制，原字符串仍归调用方所有）");
+    println!("=== 竞技场计分榜 ===");
+    let (first, total) = exercises::current::exercise_fn();
+    println!("第一名：{}", first);
+    println!("全场总得分：{}", total);
+    println!("（total_score 借用玩家列表求和，之后再借仍可用，未转移所有权）");
 }
