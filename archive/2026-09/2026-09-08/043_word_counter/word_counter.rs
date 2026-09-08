@@ -22,10 +22,16 @@
 ///     { "the": 2, "cat": 1, "and": 1, "dog": 1 }
 ///   word_count("") ->
 ///     { }（空表）
+///
+use std::collections::HashMap;
 pub fn word_count(text: &str) -> std::collections::HashMap<String, usize> {
     // TODO: 遍历 text.split_whitespace() 得到的每个词，
     //       用 HashMap 统计出现次数
-    todo!()
+    let mut counts: HashMap<String, usize> = HashMap::new();
+    for s in text.split_whitespace() {
+        *counts.entry(s.to_string()).or_insert(0) += 1;
+    }
+    counts
 }
 
 /// 入口函数：对给定的 texts 数组，合并其中所有文本的单词统计。
@@ -36,5 +42,13 @@ pub fn word_count(text: &str) -> std::collections::HashMap<String, usize> {
 ///     { "a": 1, "b": 2, "c": 1 }
 pub fn exercise_fn(texts: &[&str]) -> std::collections::HashMap<String, usize> {
     // TODO: 遍历 texts，把每一份文本的词频累计进同一个 HashMap
-    todo!()
+    let mut counts: HashMap<String, usize> = HashMap::new();
+    for text in texts {
+        // let m: HashMap<String, usize> = word_count(text);
+        for (k,v) in word_count(text) {
+            *counts.entry(k).or_insert(0) += v;
+        }
+    }
+
+    counts
 }
