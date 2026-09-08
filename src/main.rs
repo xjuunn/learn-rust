@@ -1,14 +1,14 @@
 mod exercises;
 
 fn main() {
-    println!("=== 期末成绩单 ===");
-    for (score, g) in [95u32, 80, 62, 55, 30, 120]
-        .into_iter()
-        .zip(exercises::current::exercise_fn())
-    {
-        match g {
-            Some(grade) => println!("{} 分 -> {:?}", score, grade),
-            None => println!("{} 分 -> 非法成绩", score),
-        }
+    println!("=== 词频统计器 ===");
+    let stats = exercises::current::exercise_fn(&[
+        "the quick brown fox",
+        "the lazy dog",
+        "the fox jumps",
+    ]);
+    println!("单词出现次数:");
+    for (word, count) in &stats {
+        println!("  {:<8} x{}", word, count);
     }
 }
