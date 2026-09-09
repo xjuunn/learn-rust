@@ -38,13 +38,13 @@ pub fn sort_schedule(tasks: &[Task]) -> Vec<String> {
 
     // 第二步：按 urgency 降序排序（紧急度高的排前面）
     // 填空 1：这里当前是「升序」，请改为按 urgency 降序比较
-    work.sort_by(|a, b| a.urgency.cmp(&b.urgency));
+    work.sort_by(|a, b| b.urgency.cmp(&a.urgency));
 
     // 第三步：把排序后的每个任务格式化成一行文本
     // 填空 2：这里的占位只是返回 day，请改为用 format! 生成完整行
     let lines: Vec<String> = work
         .iter()
-        .map(|t| t.day.clone()) // TODO: 改成 format!("{}: {}（紧急度 {}）", t.day, t.desc, t.urgency)
+        .map(|t| format!("{}: {}（紧急度 {}）", t.day,t.desc,t.urgency)) // TODO: 改成 format!("{}: {}（紧急度 {}）", t.day, t.desc, t.urgency)
         .collect();
     lines
 }
@@ -52,5 +52,5 @@ pub fn sort_schedule(tasks: &[Task]) -> Vec<String> {
 /// 入口函数：接收任务列表，返回格式化后的日程文本行（已按紧急度排序）。
 pub fn exercise_fn(tasks: &[Task]) -> Vec<String> {
     // 填空 3：直接调用 sort_schedule 并把结果返回
-    todo!()
+    sort_schedule(tasks)
 }
