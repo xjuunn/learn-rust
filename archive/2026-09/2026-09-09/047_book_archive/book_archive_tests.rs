@@ -27,9 +27,10 @@ fn test_empty_books() {
 }
 
 // 测试说明：验证 exercise_fn 返回每个分类的书本数量
+// 元组约定为 (书名, 分类)
 #[test]
 fn test_count_by_category() {
-    let books = &[("科幻", "三体"), ("文学", "活着"), ("科幻", "沙丘")];
+    let books = &[("三体", "科幻"), ("活着", "文学"), ("沙丘", "科幻")];
     let result = exercise_fn(books);
     assert_eq!(result.get("科幻"), Some(&2));
     assert_eq!(result.get("文学"), Some(&1));
@@ -38,7 +39,7 @@ fn test_count_by_category() {
 // 测试说明：验证同一分类的书数量正确累计
 #[test]
 fn test_count_accumulates() {
-    let books = &[("x", "1"), ("x", "2"), ("y", "3")];
+    let books = &[("甲", "x"), ("乙", "x"), ("丙", "y")];
     let result = exercise_fn(books);
     assert_eq!(result.get("x"), Some(&2));
     assert_eq!(result.get("y"), Some(&1));

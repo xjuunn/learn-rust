@@ -1,18 +1,15 @@
 mod exercises;
 
 fn main() {
-    println!("=== 书架归档 ===");
-    let shelf = exercises::current::archive(&[
-        ("三体", "科幻"),
-        ("活着", "文学"),
-        ("沙丘", "科幻"),
-        ("百年孤独", "文学"),
-        ("小王子", "文学"),
+    println!("=== 周计划日程表 ===");
+    let lines = exercises::current::exercise_fn(&[
+        exercises::current::Task { day: "周一".to_string(), desc: "写学习报告".to_string(), urgency: 5 },
+        exercises::current::Task { day: "周二".to_string(), desc: "修复线上 bug".to_string(), urgency: 9 },
+        exercises::current::Task { day: "周三".to_string(), desc: "参加项目评审".to_string(), urgency: 7 },
+        exercises::current::Task { day: "周四".to_string(), desc: "整理文档".to_string(), urgency: 2 },
+        exercises::current::Task { day: "周五".to_string(), desc: "代码走查".to_string(), urgency: 4 },
     ]);
-    for (category, books) in &shelf {
-        println!("【{}】 {} 本:", category, books.len());
-        for b in books {
-            println!("  - {}", b);
-        }
+    for line in lines {
+        println!("  {}", line);
     }
 }

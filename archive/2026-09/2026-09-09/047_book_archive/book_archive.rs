@@ -38,12 +38,23 @@ use std::collections::HashMap;
 pub fn archive<'a>(books: &[(&'a str, &'a str)]) -> HashMap<&'a str, Vec<String>> {
     // TODO: 遍历 books，用 entry() 按分类取出书单 Vec，
     // 再用 push 把书名（转成 String）追加进去
-    todo!()
+    let mut list: HashMap<&str, Vec<String>> = HashMap::new();
+    for book in books {
+        list.entry(book.1)
+            .or_insert(vec![])
+            .push(book.0.to_string());
+    }
+    list
 }
 
 /// 入口函数：返回每个分类下的书本数量（HashMap<&str, usize>）。
 /// 可以直接调用 archive 之后 map 每个分类的 Vec 长度。
 pub fn exercise_fn<'a>(books: &[(&'a str, &'a str)]) -> HashMap<&'a str, usize> {
     // TODO: 调用 archive 得到分组表，再统计每个分类的书本数量
-    todo!()
+    let arch = archive(books);
+    let mut counts: HashMap<&str, usize> = HashMap::new();
+    for item in arch {
+        *counts.entry(item.0).or_insert(0) = item.1.len();
+    }
+    counts
 }
