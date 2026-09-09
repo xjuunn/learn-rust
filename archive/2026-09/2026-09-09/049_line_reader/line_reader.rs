@@ -25,7 +25,14 @@
 pub fn number_lines(text: &str) -> Vec<String> {
     // 填空 1：遍历 text.lines()，对每行给出行号（从 1 开始），
     // 用 format! 生成 "行号: 内容"，收集进 Vec 并返回
-    todo!()
+    // text.lines()
+    //     .map(|f| format!("{}: {}", 1, f.to_string()))
+    //     .collect()
+    let mut list: Vec<String> = Vec::new();
+    for (i, item) in text.lines().enumerate() {
+        list.push(format!("{}: {}", i + 1, item));
+    }
+    list
 }
 
 /// 入口函数：把输入的多行文本加行号，然后在最前面加一行标题
@@ -37,5 +44,7 @@ pub fn number_lines(text: &str) -> Vec<String> {
 pub fn exercise_fn(text: &str) -> Vec<String> {
     // 填空 2：调用 number_lines 得到有行号的列表，
     // 再在开头插入标题行（标题行内容是 "共 N 行:"，N 为行数），返回
-    todo!()
+    let mut list = number_lines(text);
+    list.insert(0, format!("共 {} 行:", list.len()));
+    list
 }
