@@ -1,10 +1,11 @@
 mod exercises;
 
 fn main() {
-    println!("=== 歌词行号生成器 ===");
-    let lyric = "夜空中最亮的星\n能否听清\n那仰望的人\n心底的孤独和叹息";
-    let lines = exercises::current::exercise_fn(lyric);
-    for line in lines {
-        println!("  {}", line);
-    }
+    println!("=== 数组安全访问器 ===");
+    let arr = [10, 20, 30, 40, 50];
+    let indices = [0, 2, 4];
+    println!("数组: {:?}", arr);
+    println!("访问索引: {:?}", indices);
+    let results = exercises::current::exercise_fn(&arr, &indices);
+    println!("访问结果: {:?}", results);
 }
