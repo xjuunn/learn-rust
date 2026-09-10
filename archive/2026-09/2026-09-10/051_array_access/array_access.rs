@@ -26,7 +26,10 @@
 pub fn safe_access(arr: &[i32], index: usize) -> i32 {
     // 填空 1：检查索引是否越界，如果越界则 panic! 并给出错误信息
     // 如果没越界，返回 arr[index]
-    todo!()
+    if arr.len() <= index {
+        panic!("索引 {} 越界，数组长度为 {}", index, arr.len());
+    }
+    arr[index]
 }
 
 /// 入口函数：演示数组安全访问
@@ -38,5 +41,8 @@ pub fn safe_access(arr: &[i32], index: usize) -> i32 {
 pub fn exercise_fn(arr: &[i32], indices: &[usize]) -> Vec<i32> {
     // 填空 2：遍历 indices，对每个索引调用 safe_access
     // 收集结果到 Vec 并返回
-    todo!()
+    indices
+        .iter()
+        .map(|index| safe_access(arr, *index))
+        .collect()
 }
