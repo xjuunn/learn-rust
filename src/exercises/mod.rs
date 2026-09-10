@@ -3,5 +3,7 @@
 //   1. 用 `pub mod <题目文件名>` 声明当前题目模块
 //   2. 用 `pub use <题目名> as current;` 转发为固定名 current
 
+pub mod array_access;
+pub use array_access as current;
+
 pub mod roster_rank;
-pub use roster_rank as current;
