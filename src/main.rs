@@ -1,9 +1,9 @@
 mod exercises;
 
 fn main() {
-    println!("=== 自动售货机结算 ===");
-    let orders = [(3.5, 10.0), (2.0, 2.0), (10.0, 3.0), (5.5, 5.0)];
-    for line in exercises::current::exercise_fn(&orders) {
+    println!("=== 班级成绩录入系统 ===");
+    let lines = ["小红:90", "小明:abc", " 小刚 : 88 ", "小美", "小强:100"];
+    for line in exercises::current::exercise_fn(&lines) {
         println!("  {}", line);
     }
 }
