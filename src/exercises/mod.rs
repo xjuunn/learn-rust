@@ -5,5 +5,3 @@
 
 pub mod array_access;
 pub use array_access as current;
-
-pub mod roster_rank;
