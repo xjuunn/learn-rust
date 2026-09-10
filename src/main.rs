@@ -1,14 +1,14 @@
 mod exercises;
 
 fn main() {
-    println!("=== 订单金额统计 ===");
-    let orders_text = "10.5,20,3.25\n5\n0.5,0.5";
-    println!("原始订单数据:");
-    for line in orders_text.lines() {
+    println!("=== 程序配置加载 ===");
+    let config_text = "speed=100\nverbose=true\nname=opencode\ndebug=badline";
+    println!("读取配置文件：");
+    for line in config_text.lines() {
         println!("  {}", line);
     }
-    match exercises::current::exercise_fn(orders_text) {
-        Ok(text) => println!("统计结果: {}", text),
-        Err(msg) => println!("统计失败: {}", msg),
+    println!("解析结果:");
+    for result in exercises::current::exercise_fn(config_text) {
+        println!("  {}", result);
     }
 }
