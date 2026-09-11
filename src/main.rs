@@ -1,18 +1,24 @@
 mod exercises;
 
 fn main() {
-    println!("=== 每日开支统计 ===");
-    let records = [
-        exercises::current::DailyRecord { date: "09-01".to_string(), amount_text: "25.5".to_string() },
-        exercises::current::DailyRecord { date: "09-02".to_string(), amount_text: " 8 ".to_string() },
-        exercises::current::DailyRecord { date: "09-03".to_string(), amount_text: "-3".to_string() },
-        exercises::current::DailyRecord { date: "09-04".to_string(), amount_text: "0".to_string() },
-        exercises::current::DailyRecord { date: "09-05".to_string(), amount_text: "abc".to_string() },
+    println!("=== 电子钱包转账 ===");
+    let mut wallets = vec![
+        exercises::current::Account { name: "小明".to_string(), balance: 100.0 },
+        exercises::current::Account { name: "小红".to_string(), balance: 50.0 },
     ];
-    let (total, errors) = exercises::current::exercise_fn(&records);
-    println!("本周期合法支出合计: {:.2} 元", total);
-    println!("非法记录 {} 条：", errors.len());
-    for line in &errors {
+    let transfers: [(&str, &str, f64); 3] =
+        [("小明", "小红", 30.0), ("小明", "小刚", 10.0), ("小明", "小红", 0.0)];
+
+    println!("初始账户:");
+    for a in &wallets {
+        println!("  {}: {:.2} 元", a.name, a.balance);
+    }
+    println!("执行转账:");
+    for line in exercises::current::exercise_fn(&mut wallets, &transfers) {
         println!("  {}", line);
+    }
+    println!("最终账户:");
+    for a in &wallets {
+        println!("  {}: {:.2} 元", a.name, a.balance);
     }
 }
