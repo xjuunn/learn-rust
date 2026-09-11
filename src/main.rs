@@ -1,30 +1,18 @@
 mod exercises;
 
 fn main() {
-    println!("=== 超市收银台 ===");
-    let items = [
-        exercises::current::CartItem {
-            name: "苹果".to_string(),
-            price_text: Some("10".to_string()),
-            discount_text: Some("0.8".to_string()),
-        },
-        exercises::current::CartItem {
-            name: "牛奶".to_string(),
-            price_text: Some("15".to_string()),
-            discount_text: None,
-        },
-        exercises::current::CartItem {
-            name: "面包".to_string(),
-            price_text: None,
-            discount_text: Some("0.9".to_string()),
-        },
-        exercises::current::CartItem {
-            name: "糖果".to_string(),
-            price_text: Some("abc".to_string()),
-            discount_text: None,
-        },
+    println!("=== 每日开支统计 ===");
+    let records = [
+        exercises::current::DailyRecord { date: "09-01".to_string(), amount_text: "25.5".to_string() },
+        exercises::current::DailyRecord { date: "09-02".to_string(), amount_text: " 8 ".to_string() },
+        exercises::current::DailyRecord { date: "09-03".to_string(), amount_text: "-3".to_string() },
+        exercises::current::DailyRecord { date: "09-04".to_string(), amount_text: "0".to_string() },
+        exercises::current::DailyRecord { date: "09-05".to_string(), amount_text: "abc".to_string() },
     ];
-    for line in exercises::current::exercise_fn(&items) {
+    let (total, errors) = exercises::current::exercise_fn(&records);
+    println!("本周期合法支出合计: {:.2} 元", total);
+    println!("非法记录 {} 条：", errors.len());
+    for line in &errors {
         println!("  {}", line);
     }
 }
