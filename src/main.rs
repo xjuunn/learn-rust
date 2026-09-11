@@ -1,24 +1,26 @@
 mod exercises;
 
 fn main() {
-    println!("=== 电子钱包转账 ===");
-    let mut wallets = vec![
-        exercises::current::Account { name: "小明".to_string(), balance: 100.0 },
-        exercises::current::Account { name: "小红".to_string(), balance: 50.0 },
+    println!("=== 餐厅结账系统 ===");
+    let menu = [
+        exercises::current::Dish { name: "宫保鸡丁".to_string(), price: 28.0 },
+        exercises::current::Dish { name: "麻婆豆腐".to_string(), price: 18.0 },
+        exercises::current::Dish { name: "米饭".to_string(), price: 3.0 },
     ];
-    let transfers: [(&str, &str, f64); 3] =
-        [("小明", "小红", 30.0), ("小明", "小刚", 10.0), ("小明", "小红", 0.0)];
-
-    println!("初始账户:");
-    for a in &wallets {
-        println!("  {}: {:.2} 元", a.name, a.balance);
-    }
-    println!("执行转账:");
-    for line in exercises::current::exercise_fn(&mut wallets, &transfers) {
+    let orders: Vec<Vec<exercises::current::OrderItem>> = vec![
+        vec![
+            exercises::current::OrderItem { name: "宫保鸡丁".to_string(), count: 2 },
+            exercises::current::OrderItem { name: "米饭".to_string(), count: 3 },
+        ],
+        vec![
+            exercises::current::OrderItem { name: "红烧肉".to_string(), count: 1 },
+        ],
+        vec![
+            exercises::current::OrderItem { name: "麻婆豆腐".to_string(), count: 0 },
+        ],
+    ];
+    let refs: Vec<&[exercises::current::OrderItem]> = orders.iter().map(|v| v.as_slice()).collect();
+    for line in exercises::current::exercise_fn(&menu, &refs) {
         println!("  {}", line);
-    }
-    println!("最终账户:");
-    for a in &wallets {
-        println!("  {}: {:.2} 元", a.name, a.balance);
     }
 }
