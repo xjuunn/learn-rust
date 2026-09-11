@@ -1,10 +1,11 @@
 mod exercises;
 
 fn main() {
-    println!("=== 泛型比较函数 ===");
-    let (a, b, c) = exercises::current::exercise_fn();
-    println!("整数比较: max_of(3, 9) = {}", a);
-    println!("浮点限制: clamp(7.5, 0.0, 5.0) = {}", b);
-    println!("字符串比较: max_of(\"rust\", \"python\") = {}", c);
-    println!("同样的代码，三种类型都能用——这就是泛型");
+    println!("=== 泛型结构体 Pair ===");
+    let (a, b, c, d) = exercises::current::exercise_fn();
+    println!("Pair<int>::first_ref() = {}", a);
+    println!("Pair<f64> 的 second 字段 = {}", b);
+    println!("Pair<str>::larger() = {}", c);
+    println!("Pair<int>::swap().first = {}", d);
+    println!("同一个 Pair<T>，为 int / f64 / str 三款类型而生");
 }
