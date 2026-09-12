@@ -3,5 +3,5 @@
 //   1. 用 `pub mod <题目文件名>` 声明当前题目模块
 //   2. 用 `pub use <题目名> as current;` 转发为固定名 current
 
-pub mod fixed_array;
-pub use fixed_array as current;
+pub mod vault;
+pub use vault as current;
