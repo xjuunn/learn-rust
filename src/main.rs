@@ -1,9 +1,14 @@
 mod exercises;
 
 fn main() {
-    println!("=== 战棋角色情报面板 ===");
-    let (knight_info, mage_info) = exercises::current::exercise_fn();
-    println!("[骑士] {}", knight_info);
-    println!("[法师] {}", mage_info);
-    println!("不同类型实现同一 Trait，即可用同一方法名 describe");
+    println!("=== 小镇公告广场 ===");
+    let (msg1, msg2, title1) = exercises::current::exercise_fn();
+    println!("守卫公告: {}", msg1);
+    println!("法师公告: {}", msg2);
+    println!("守卫生份标签: {}", title1);
+    let sage = exercises::current::CourtWizard {
+        name: String::from("Elena"),
+    };
+    println!("法师覆盖标签: {}", exercises::current::Announce::title(&sage));
+    println!("默认方法不覆盖则沿用，覆盖则按自定义");
 }
