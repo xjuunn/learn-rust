@@ -1,3 +1,6 @@
+[workspace]
+members = ["projects/game1"]
+
 [package]
 name = "learn-rust"
 version = "0.1.0"
